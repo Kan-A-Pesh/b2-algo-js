@@ -4,8 +4,9 @@ const Jason = {
 };
 
 class Personnage {
-    constructor(name, deathProb, damageProb, martyrdomProb) {
+    constructor(name, type, deathProb, damageProb, martyrdomProb) {
         this.name = name;
+        this.type = type;
         this.deathProb = deathProb;
         this.damageProb = damageProb;
         this.martyrdomProb = martyrdomProb;
@@ -37,6 +38,8 @@ const names = [
     "Jules",
 ];
 
+const type = ["Le geek", "Le sportif", "La blonde", "Celui qui survit à tout", "Le roux", "Le chauve", "Le beau gosse", "L'autre"];
+
 const personnages = [];
 const deaths = [];
 
@@ -51,7 +54,15 @@ for (let i = 0; i < 5; i++) {
     damageProb = Math.round((damageProb / total) * 10) / 10;
     martyrdomProb = Math.round((1 - deathProb - damageProb) * 10) / 10;
 
-    personnages.push(new Personnage(names[Math.floor(Math.random() * names.length)], deathProb, damageProb, martyrdomProb));
+    personnages.push(
+        new Personnage(
+            names[Math.floor(Math.random() * names.length)],
+            type[Math.floor(Math.random() * type.length)],
+            deathProb,
+            damageProb,
+            martyrdomProb,
+        ),
+    );
 
     console.log(
         `- ${personnages[i].name} (mort : ${personnages[i].deathProb}, dégâts : ${personnages[i].damageProb}, martyrdom : ${personnages[i].martyrdomProb})`,
